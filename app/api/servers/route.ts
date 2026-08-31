@@ -1,4 +1,5 @@
 import { servers } from 'cfx-api';
+import axios from 'axios';
 
 export const dynamic = 'force-dynamic';
 
@@ -6,6 +7,7 @@ const clean = (value: string) => value.replace(/\^[0-9]/g, '').trim();
 
 export async function GET() {
   try {
+    axios.defaults.adapter = 'fetch';
     const list = await servers.all({
       locale: 'pt-BR',
       minPlayers: 1,
