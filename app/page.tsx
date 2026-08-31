@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ServerBrowser } from '@/components/server-browser';
+import { InternationalVideosSection } from './components/InternationalVideos';
 import {
   ArrowUpRight,
   CarFront,
@@ -84,10 +85,7 @@ export default function Home() {
         </a>
       </header>
 
-      <section
-        className={`hero ${gameMode === 'V' ? 'gta-v' : ''}`}
-        id="inicio"
-      >
+      <section className={`hero ${gameMode === 'V' ? 'gta-v' : ''}`} id="inicio">
         <div className="hero-noise" />
         <div className="hero-content">
           <p className="eyebrow">
@@ -106,8 +104,7 @@ export default function Home() {
             ) : (
               <>
                 VIVA O<br />
-                <em>PRÓXIMO</em>
-                <br />
+                <em>PRÓXIMO</em><br />
                 MUNDO.
               </>
             )}
@@ -155,6 +152,10 @@ export default function Home() {
           ROLE PARA DESCOBRIR <ChevronDown size={14} />
         </div>
       </section>
+
+      {gameMode === 'VI' && (
+        <InternationalVideosSection />
+      )}
 
       {gameMode === 'V' && (
         <section className="gta5-showcase section" id="gta-v">
@@ -314,6 +315,10 @@ export default function Home() {
         </div>
       </section>
 
+      {gameMode === 'VI' && (
+        <InternationalVideosSection />
+      )}
+
       <section className="videos section vi-only" id="videos">
         <div className="section-heading light">
           <div>
@@ -358,11 +363,15 @@ export default function Home() {
         </div>
       </section>
 
+      {gameMode === 'VI' && (
+        <InternationalVideosSection />
+      )}
+
       <section className="servers section" id="servidores">
         <div className="section-heading light">
           <div>
             <p className="kicker">
-              /{' '}
+              {' '}
               {gameMode === 'V'
                 ? 'DIRETÓRIO OFICIAL FIVEM'
                 : 'STATUS MULTIPLAYER'}
@@ -400,6 +409,10 @@ export default function Home() {
           </div>
         )}
       </section>
+
+      {gameMode === 'VI' && (
+        <InternationalVideosSection />
+      )}
 
       <section className="universe section vi-only" id="universo">
         <div className="section-heading">
@@ -447,6 +460,10 @@ export default function Home() {
         </div>
       </section>
 
+      {gameMode === 'VI' && (
+        <InternationalVideosSection />
+      )}
+
       <section className="community vi-only" id="comunidade">
         <p>FAÇA PARTE DA COMUNIDADE</p>
         <h2>
@@ -471,6 +488,11 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      {gameMode === 'VI' && (
+        <InternationalVideosSection />
+      )}
+
       <footer>
         <a href="#inicio" className="brand">
           GTA <span>{gameMode === 'VI' ? '6' : '5'}</span> WORLD

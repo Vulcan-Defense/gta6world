@@ -1,35 +1,92 @@
-import { servers } from 'cfx-api';
-import axios from 'axios';
+import { Root } from 'protobufjs/light';
+import { masterSchema } from './schema';
 
 export const dynamic = 'force-dynamic';
+
+type RawServer = {
+  EndPoint?: string;
+  Data?: {
+    clients?: number;
+    svMaxclients?: number;
+    hostname?: string;
+    gametype?: string;
+    iconVersion?: number;
+    vars?: Record<string, string>;
+  };
+};
 
 const clean = (value: string) => value.replace(/\^[0-9]/g, '').trim();
 
 export async function GET() {
   try {
-    axios.defaults.adapter = 'fetch';
-    const list = await servers.all({
-      locale: 'pt-BR',
-      minPlayers: 1,
-      limit: 80,
-    });
-    const result = list
-      .filter((server) => server.isFiveM)
-      .sort((a, b) => b.playersCount - a.playersCount)
+    const response = await fetch(
+      'https://frontend.cfx-services.net/api/servers/streamRedir/',
+      {
+        headers: { Accept: 'application/octet-stream' },
+      },
+    );
+    if (!response.ok) throw new Error('FiveM feed unavailable');
+
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    const serverType = Root.fromJSON(masterSchema).lookupType('master.Server');
+    const decoded: RawServer[] = [];
+    let offset = 0;
+
+    while (offset + 4 <= bytes.length) {
+      const length = new DataView(
+        bytes.buffer,
+        bytes.byteOffset + offset,
+        4,
+      ).getUint32(0, true);
+      offset += 4;
+      if (!length || offset + length > bytes.length) break;
+      const message = serverType.decode(
+        bytes.subarray(offset, offset + length),
+      );
+      offset += length;
+      const item = serverType.toObject(message, {
+        arrays: true,
+        objects: true,
+        defaults: true,
+      }) as RawServer;
+      const vars = item.Data?.vars ?? {};
+      if (
+        vars.gamename === 'gta5' &&
+        vars.locale === 'pt-BR' &&
+        (item.Data?.clients ?? 0) > 0
+      )
+        decoded.push(item);
+    }
+
+    const result = decoded
+      .sort((a, b) => (b.Data?.clients ?? 0) - (a.Data?.clients ?? 0))
       .slice(0, 30)
-      .map((server) => ({
-        id: server.id,
-        name: clean(server.projectName || server.hostname || 'Servidor FiveM'),
-        description: clean(
-          server.projectDesc || server.gameType || 'Comunidade GTA V',
-        ),
-        players: server.playersCount,
-        maxPlayers: server.maxPlayers,
-        locale: server.locale || 'pt-BR',
-        tags: server.tags.slice(0, 4),
-        joinUrl: server.joinUrl,
-        iconUrl: server.iconUrl,
-      }));
+      .map((server) => {
+        const id = server.EndPoint ?? '';
+        const data = server.Data ?? {};
+        const vars = data.vars ?? {};
+        const iconVersion = data.iconVersion;
+        return {
+          id,
+          name: clean(vars.sv_projectName || data.hostname || 'Servidor FiveM'),
+          description: clean(
+            vars.sv_projectDesc || data.gametype || 'Comunidade GTA V',
+          ),
+          players: data.clients ?? 0,
+          maxPlayers: data.svMaxclients ?? 0,
+          locale: vars.locale || 'pt-BR',
+          tags: (vars.tags || '')
+            .split(',')
+            .map((tag) => tag.trim())
+            .filter(Boolean)
+            .slice(0, 4),
+          joinUrl: `https://cfx.re/join/${id}`,
+          iconUrl:
+            iconVersion === undefined
+              ? ''
+              : `https://frontend.cfx-services.net/api/servers/icon/${id}/${iconVersion}.png`,
+        };
+      });
 
     return Response.json(
       { servers: result, updatedAt: new Date().toISOString() },

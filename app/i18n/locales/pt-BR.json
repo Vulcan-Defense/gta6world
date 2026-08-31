@@ -1,0 +1,268 @@
+{
+  "nav": {
+    "news": "NOTÍCIAS",
+    "videos": "VÍDEOS",
+    "servers": "SERVIDORES",
+    "universe": "UNIVERSO",
+    "store": "LOJA",
+    "community": "COMUNIDADE"
+  },
+  "header": {
+    "brand": "GTA 6 WORLD",
+    "menuLabel": "Abrir menu",
+    "modeSwitchLabel": "Selecionar jogo",
+    "joinButton": "EXPLORAR",
+    "gtaV": "GTA V",
+    "gtaVI": "GTA VI",
+    "seeServers": "VER SERVIDORES",
+    "exploreNow": "EXPLORAR AGORA",
+    "seeFivemList": "VER LISTA FIVEM"
+  },
+  "hero": {
+    "subtitle": "O PORTAL DEFINITIVO DE LEONIDA",
+    "titleGtaV": {
+      "part1": "ENTRE",
+      "part2": "NO JOGO."
+    },
+    "titleGtaVi": {
+      "part1": "VIVA O",
+      "part2": "PRÓXIMO",
+      "part3": "MUNDO."
+    },
+    "copyGtaV": "Encontre servidores de GTA V na lista oficial do FiveM e conecte-se à comunidade.",
+    "copyGtaVi": "Notícias, comunidades e tudo que pulsa nas ruas de Vice City. Seu ponto de encontro começa aqui.",
+    "primaryActionGtaV": "VER LISTA FIVEM",
+    "primaryActionGtaVi": "EXPLORAR AGORA",
+    "textAction": "VER SERVIDORES",
+    "stats": {
+      "gtaV": {
+        "left": {
+          "strong": "FIVEM",
+          "spanFirst": "LISTA OFICIAL",
+          "spanSecond": "CFX.RE"
+        },
+        "right": {
+          "strong": "GTA V",
+          "spanFirst": "MODO",
+          "spanSecond": "MULTIPLAYER"
+        }
+      },
+      "gtaVi": {
+        "left": {
+          "strong": "19 NOV",
+          "spanFirst": "LANÇAMENTO",
+          "spanSecond": "2026"
+        },
+        "right": {
+          "strong": "PS5",
+          "spanFirst": "E XBOX",
+          "spanSecond": "SERIES X|S"
+        }
+      }
+    },
+    "scrollCue": "ROLE PARA DESCOBRIR"
+  },
+  "news": {
+    "heading": {
+      "kicker": "/ FONTE OFICIAL ROCKSTAR",
+      "title": "ÚLTIMAS NOTÍCIAS",
+      "officialSite": "SITE OFICIAL"
+    },
+    "featured": {
+      "title": "GTA VI: “AN EXTENDED LOOK” JÁ ESTÁ DISPONÍVEL",
+      "description": "A Rockstar apresentou uma visão ampliada de Vice City, Leonida e da história de Jason e Lucia.",
+      "readMore": "LER NA ROCKSTAR"
+    },
+    "side": [
+      {
+        "title": "PRÉ-VENDA DE GTA VI JÁ COMEÇOU",
+        "meta": {
+          "label": "PRÉ-VENDA",
+          "date": "24 JUN 2026"
+        },
+        "readMore": "LER NA ROCKSTAR"
+      },
+      {
+        "title": "LANÇAMENTO EM 19 DE NOVEMBRO DE 2026",
+        "meta": {
+          "label": "DATA OFICIAL",
+          "date": "06 NOV 2025"
+        },
+        "readMore": "LER NA ROCKSTAR"
+      }
+    ]
+  },
+  "videos": {
+    "heading": {
+      "kicker": "/ ASSISTA AGORA",
+      "title": "VÍDEOS OFICIAIS",
+      "rockstarChannel": "CANAL ROCKSTAR"
+    },
+    "videos": [
+      {
+        "title": "TRAILER 2",
+        "description": "JASON E LUCIA EM VICE CITY"
+      },
+      {
+        "title": "TRAILER 1",
+        "description": "O PRIMEIRO OLHAR SOBRE LEONIDA"
+      }
+    ]
+  },
+  "servers": {
+    "heading": {
+      "kickerGtaV": "/ DIRETÓRIO OFICIAL FIVEM",
+      "kickerGtaVi": "/ STATUS MULTIPLAYER",
+      "titleGtaV": "SERVIDORES GTA V",
+      "titleGtaVi": "SERVIDORES GTA VI"
+    },
+    "livePill": {
+      "gtaV": "FIVEM / CFX.RE",
+      "gtaVi": "AINDA INDISPONÍVEL"
+    },
+    "comingPanel": {
+      "soon": "EM BREVE",
+      "title": "GTA VI AINDA NÃO POSSUI SERVIDORES PÚBLICOS",
+      "description": "Quando houver uma plataforma oficial ou comunitária confiável para GTA VI, ela poderá ser listada aqui. Enquanto isso, altere para o modo GTA V e explore o FiveM.",
+      "button": "MUDAR PARA GTA V"
+    },
+    "toolbar": {
+      "placeholder": "Buscar servidor, cidade ou tag",
+      "loading": "CARREGANDO…",
+      "serversFound": "SERVIDORES EXIBIDOS",
+      "retryButton": "TENTAR NOVAMENTE",
+      "officialList": "ABRIR LISTA OFICIAL"
+    },
+    "empty": "Nenhum servidor encontrado para “{query}”.",
+    "source": "Dados carregados do diretório FiveM/Cfx.re. A disponibilidade muda em tempo real."
+  },
+  "universe": {
+    "heading": {
+      "kicker": "/ IMAGENS OFICIAIS",
+      "title": "EXPLORE O UNIVERSO",
+      "officialGallery": "VER GALERIA OFICIAL"
+    },
+    "topics": [
+      {
+        "number": "01",
+        "title": "MODA",
+        "text": "Os visuais oficiais de Lucia, Jason e das ruas ensolaradas de Vice City.",
+        "ariaLabel": "Explorar MODA"
+      },
+      {
+        "number": "02",
+        "title": "CARROS",
+        "text": "Máquinas, perseguições e a cultura automotiva que movimenta Leonida.",
+        "ariaLabel": "Explorar CARROS"
+      },
+      {
+        "number": "03",
+        "title": "MILITARISMO",
+        "text": "Operações, equipamentos e os conflitos mostrados no material oficial.",
+        "ariaLabel": "Explorar MILITARISMO"
+      }
+    ]
+  },
+  "community": {
+    "title": "FAÇA PARTE DA COMUNIDADE",
+    "subtitle": "VICE CITY NÃO<br/><em>DORME.</em>",
+    "social": [
+      {
+        "platform": "X",
+        "label": "ACOMPANHAR NO X"
+      },
+      {
+        "platform": "YOUTUBE",
+        "label": "VER NO YOUTUBE"
+      }
+    ]
+  },
+  "footer": {
+    "disclaimer": "Portal independente criado por fãs. Não afiliado à Rockstar Games.",
+    "copyright": "© 2026"
+  },
+  "store": {
+    "header": {
+      "back": "VOLTAR AO PORTAL",
+      "brand": "GTA 6 WORLD",
+      "modeSwitchLabel": "Selecionar catálogo",
+      "gtaV": "GTA V",
+      "gtaVI": "GTA VI"
+    },
+    "hero": {
+      "subtitle": "/ CATÁLOGO OFICIAL",
+      "title": {
+        "part1": "ESCOLHA SUA",
+        "part2": "EDIÇÃO."
+      },
+      "description": "Compare opções e finalize sua compra nos canais oficiais."
+    },
+    "section": {
+      "title": {
+        "part1": "/ MODO ",
+        "part2": "PRODUTOS EM DESTAQUE"
+      },
+      "badge": "LINKS OFICIAIS"
+    },
+    "disclaimer": "GTA World é um portal independente. Produtos, preços, disponibilidade, pagamentos e suporte são de responsabilidade das lojas oficiais vinculadas.",
+    "products": {
+      "V": [
+        {
+          "type": "JOGO COMPLETO",
+          "name": "Grand Theft Auto V + GTA Online",
+          "detail": "Story Mode e GTA Online",
+          "url": "https://store.rockstargames.com/game/buy-gta-v",
+          "button": "VER NA LOJA OFICIAL"
+        },
+        {
+          "type": "MULTIPLAYER",
+          "name": "Grand Theft Auto Online",
+          "detail": "Universo online em constante evolução",
+          "url": "https://www.rockstargames.com/gta-v",
+          "button": "VER NA LOJA OFICIAL"
+        },
+        {
+          "type": "COMUNIDADE",
+          "name": "FiveM para GTA V",
+          "detail": "Cliente gratuito — requer GTA V",
+          "url": "https://fivem.net/",
+          "button": "VER NA LOJA OFICIAL"
+        }
+      ],
+      "VI": [
+        {
+          "type": "PRÉ-VENDA",
+          "name": "Grand Theft Auto VI",
+          "detail": "PlayStation 5 e Xbox Series X|S",
+          "url": "https://www.rockstargames.com/VI",
+          "button": "VER NA LOJA OFICIAL"
+        },
+        {
+          "type": "EDIÇÃO",
+          "name": "Ultimate Edition",
+          "detail": "Consulte conteúdo e disponibilidade oficial",
+          "url": "https://www.rockstargames.com/VI",
+          "button": "VER NA LOJA OFICIAL"
+        },
+        {
+          "type": "BÔNUS",
+          "name": "Vintage Vice City Pack",
+          "detail": "Benefícios oficiais de pré-venda",
+          "url": "https://www.rockstargames.com/VI",
+          "button": "VER NA LOJA OFICIAL"
+        }
+      ]
+    }
+  },
+  "languageSwitcher": {
+    "label": "Idioma",
+    "options": {
+      "pt-BR": "Português (Brasil)",
+      "en-US": "English (US)",
+      "es-ES": "Español (España)",
+      "fr-FR": "Français (France)",
+      "de-DE": "Deutsch (Deutschland)",
+      "ja-JP": "日本語"
+    }
+  }
+}
