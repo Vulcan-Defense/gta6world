@@ -95,17 +95,9 @@ nav a:hover {
   align-items: center;
   padding: 100px 7vw 60px;
   background:
-    radial-gradient(
-      circle at 72% 44%,
-      rgba(255, 90, 25, 0.28),
-      transparent 15%
-    ),
-    radial-gradient(
-      circle at 68% 68%,
-      rgba(143, 82, 255, 0.38),
-      transparent 23%
-    ),
-    linear-gradient(116deg, #111 0%, #171412 44%, #24121d 72%, #10100f 100%);
+    linear-gradient(90deg, rgba(12, 12, 12, 0.98), rgba(12, 12, 12, 0.78) 44%, rgba(12, 12, 12, 0.12) 78%),
+    linear-gradient(0deg, rgba(12, 12, 12, 0.7), transparent 48%),
+    url('/jason-lucia.jpg') center / cover no-repeat;
 }
 .hero:before {
   content: '';
@@ -280,34 +272,25 @@ h2 em,
   gap: 54px;
 }
 .news-art {
+  display: block;
   height: 390px;
   position: relative;
   overflow: hidden;
   padding: 20px;
-  background: linear-gradient(150deg, #ffb31a 0%, #fe5518 46%, #701a75 100%);
+  background: #171514;
 }
-.news-art:after {
-  content: '';
+.news-art img,
+.thumb img {
   position: absolute;
-  width: 280px;
-  height: 500px;
-  right: 13%;
-  top: -8%;
-  background: linear-gradient(
-    160deg,
-    transparent 0 31%,
-    rgba(20, 10, 26, 0.78) 32% 68%,
-    transparent 69%
-  );
-  transform: rotate(8deg);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
 }
-.news-art > b {
-  position: absolute;
-  font-family: var(--font-display);
-  font-size: 260px;
-  bottom: -60px;
-  left: 20px;
-  color: rgba(255, 255, 255, 0.15);
+.news-art:hover img,
+.thumb:hover img {
+  transform: scale(1.035);
 }
 .news-art span,
 .thumb span {
@@ -361,33 +344,12 @@ h2 em,
   padding-bottom: 30px;
 }
 .thumb {
+  display: block;
   height: 155px;
   padding: 12px;
-  background: linear-gradient(145deg, #42a9c3, #213757 50%, #ff7849);
+  background: #171514;
   position: relative;
   overflow: hidden;
-}
-.thumb:after {
-  content: '';
-  position: absolute;
-  width: 100px;
-  height: 190px;
-  background: #151517;
-  right: 10px;
-  top: 15px;
-  transform: rotate(28deg);
-  border-radius: 50%;
-}
-.thumb.car {
-  background: linear-gradient(160deg, #c9aa81, #55374c 65%, #111);
-}
-.thumb.car:after {
-  width: 170px;
-  height: 65px;
-  top: 60px;
-  right: -10px;
-  transform: skew(-20deg);
-  border-radius: 60px 20px;
 }
 .side-news .news-meta {
   margin-top: 3px;
@@ -396,6 +358,36 @@ h2 em,
   font-size: 23px;
   line-height: 1.05;
   letter-spacing: -1px;
+}
+.videos {
+  background: #171514;
+  color: white;
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.video-frame {
+  aspect-ratio: 16 / 9;
+  background: #0a0a0a;
+  overflow: hidden;
+}
+.video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video-grid article > p {
+  color: var(--orange);
+  font-size: 9px;
+  letter-spacing: 1.7px;
+  font-weight: 900;
+  margin: 18px 0 8px;
+}
+.video-grid h3 {
+  font-size: clamp(23px, 2.2vw, 34px);
+  letter-spacing: -1.5px;
 }
 .servers {
   background: #121211;
@@ -533,25 +525,8 @@ h2 em,
   justify-content: space-between;
   position: relative;
   overflow: hidden;
-}
-.topic-card.orange {
-  background: linear-gradient(145deg, #ff6a22, #a82b21);
-}
-.topic-card.purple {
-  background: linear-gradient(145deg, #9a55ff, #392276);
-}
-.topic-card.blue {
-  background: linear-gradient(145deg, #50b9d9, #1d516d);
-}
-.topic-card:before {
-  content: '';
-  position: absolute;
-  width: 270px;
-  height: 270px;
-  border: 55px solid rgba(255, 255, 255, 0.12);
-  border-radius: 50%;
-  right: -75px;
-  top: 80px;
+  background-position: center;
+  background-size: cover;
 }
 .topic-top {
   display: flex;
@@ -676,6 +651,9 @@ footer > span {
     padding-left: 6vw;
   }
   .news-grid {
+    grid-template-columns: 1fr;
+  }
+  .video-grid {
     grid-template-columns: 1fr;
   }
   .topic-grid {

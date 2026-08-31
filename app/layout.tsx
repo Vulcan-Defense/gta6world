@@ -10,6 +10,7 @@ const display = Archivo_Black({
 const inter = Inter({ variable: '--font-body', subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://gta6-world-brasil.styvie2012.chatgpt.site'),
   title: 'GTA 6 World — Notícias e Servidores',
   description:
     'Notícias de GTA VI, servidores da comunidade e tudo sobre moda, carros e militarismo em Vice City.',
