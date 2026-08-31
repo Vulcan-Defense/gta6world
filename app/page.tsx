@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ServerBrowser } from '@/components/server-browser';
 import { InternationalVideosSection } from './components/InternationalVideos';
+import { NewsSection } from './components/NewsSection';
 import {
   ArrowUpRight,
   CarFront,
@@ -21,7 +22,7 @@ const topics = [
     title: 'MODA',
     text: 'Os visuais oficiais de Lucia, Jason e das ruas ensolaradas de Vice City.',
     color: 'orange',
-    image: '/lucia.jpg',
+    image: '/gta5-online.jpg',
   },
   {
     icon: CarFront,
@@ -29,7 +30,7 @@ const topics = [
     title: 'CARROS',
     text: 'Máquinas, perseguições e a cultura automotiva que movimenta Leonida.',
     color: 'purple',
-    image: '/vice-city.jpg',
+    image: '/gta5-los-santos.jpg',
   },
   {
     icon: Crosshair,
@@ -37,7 +38,7 @@ const topics = [
     title: 'MILITARISMO',
     text: 'Operações, equipamentos e os conflitos mostrados no material oficial.',
     color: 'blue',
-    image: '/cal-hampton.jpg',
+    image: '/og.png',
   },
 ];
 
@@ -207,7 +208,8 @@ export default function Home() {
         </section>
       )}
 
-      <section className="news section vi-only" id="noticias">
+      <NewsSection />
+      <section className="news section vi-only" id="noticias-antigas" style={{ display: 'none' }}>
         <div className="section-heading">
           <div>
             <p className="kicker">/ FONTE OFICIAL ROCKSTAR</p>
