@@ -1,31 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Globe } from 'lucide-react';
+import ptBR from '../i18n/locales/pt-BR.json';
+import enUS from '../i18n/locales/en-US.json';
+
+const localeData = { 'pt-BR': ptBR, 'en-US': enUS } as const;
 
 export function LanguageSwitcher() {
-  const [language, setLanguage] = useState('pt-BR');
-  const [translations, setTranslations] = useState({});
-
-  useEffect(() => {
-    // Load translations for selected language
-    const loadTranslations = async () => {
-      try {
-        const res = await fetch(`/app/i18n/locales/${language}.json`);
-        if (!res.ok) throw new Error('Failed to load translations');
-        const data = await res.json();
-        setTranslations(data);
-      } catch (error) {
-        console.error('Error loading translations:', error);
-        // Fallback to English
-        if (language !== 'en-US') {
-          setLanguage('en-US');
-        }
-      }
-    };
-
-    loadTranslations();
-  }, [language]);
+  const [language, setLanguage] = useState<keyof typeof localeData>('pt-BR');
+  const [isOpen, setIsOpen] = useState(false);
+  const translations = localeData[language];
 
   const t = (key) => {
     const keys = key.split('.');
@@ -45,14 +30,12 @@ export function LanguageSwitcher() {
       <button
         onClick={(e) => {
           e.stopPropagation();
-          // Toggle language dropdown
-          const dropdown = document.getElementById('language-dropdown');
-          dropdown?.classList.toggle('hidden');
+          setIsOpen((open) => !open);
         }}
         className="flex items-center space-x-2 px-3 py-2 bg-gray-800/50 rounded-lg hover:bg-gray-800/70 transition-colors text-white font-medium"
         aria-label="Selecionar idioma"
         aria-haspopup="listbox"
-        aria-expanded={!document.getElementById('language-dropdown')?.classList.contains('hidden')}
+        aria-expanded={isOpen}
       >
         <Globe className="w-4 h-4" />
         <span>{t('languageSwitcher.label')}</span>
@@ -72,16 +55,15 @@ export function LanguageSwitcher() {
 
       <div
         id="language-dropdown"
-        className="absolute right-0 mt-2 w-56 rounded-md bg-gray-800/95 backdrop-blur-sm p-2 shadow-lg z-50 hidden border border-gray-700"
+        className={`absolute right-0 mt-2 w-56 rounded-md bg-gray-800/95 backdrop-blur-sm p-2 shadow-lg z-50 border border-gray-700 ${isOpen ? '' : 'hidden'}`}
       >
         <div className="space-y-1">
           {Object.entries(t('languageSwitcher.options')).map(([code, label]) => (
             <button
               key={code}
               onClick={() => {
-                setLanguage(code);
-                // Close dropdown
-                document.getElementById('language-dropdown')?.classList.add('hidden');
+                setLanguage(code as keyof typeof localeData);
+                setIsOpen(false);
               }}
               className={`flex items-center space-x-2 w-full text-left px-3 py-2 rounded-hover bg-gray-700/30 hover:bg-gray-700/50 transition-colors ${
                 language === code ? 'bg-gray-600/50' : ''
