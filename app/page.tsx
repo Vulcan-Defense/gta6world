@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { ServerBrowser } from '@/components/server-browser';
 import {
   ArrowUpRight,
   CarFront,
   ChevronDown,
   Crosshair,
-  Gamepad2,
   Menu,
   Play,
   Shirt,
@@ -62,6 +62,7 @@ export default function Home() {
           <a href="#videos">VÍDEOS</a>
           <a href="#servidores">SERVIDORES</a>
           <a href="#universo">UNIVERSO</a>
+          <a href={`/loja?modo=${gameMode}`}>LOJA</a>
         </nav>
         <div className="mode-switch" aria-label="Selecionar jogo">
           <button
@@ -154,6 +155,56 @@ export default function Home() {
           ROLE PARA DESCOBRIR <ChevronDown size={14} />
         </div>
       </section>
+
+      {gameMode === 'V' && (
+        <section className="gta5-showcase section" id="gta-v">
+          <div className="section-heading">
+            <div>
+              <p className="kicker">/ LOS SANTOS & BLAINE COUNTY</p>
+              <h2>
+                VIVA O <em>GTA V</em>
+              </h2>
+            </div>
+            <a
+              href="https://www.rockstargames.com/gta-v"
+              target="_blank"
+              rel="noreferrer"
+            >
+              SITE OFICIAL <ArrowUpRight size={17} />
+            </a>
+          </div>
+          <div className="gta5-gallery">
+            <article>
+              <img
+                src="/gta5-los-santos.jpg"
+                alt="Cena oficial de Grand Theft Auto V em Los Santos"
+              />
+              <div>
+                <span>MODO HISTÓRIA</span>
+                <h3>MICHAEL, FRANKLIN E TREVOR</h3>
+                <p>
+                  Explore Los Santos em uma história de grandes golpes e
+                  alianças improváveis.
+                </p>
+              </div>
+            </article>
+            <article>
+              <img
+                src="/gta5-online.jpg"
+                alt="Cena oficial de Grand Theft Auto Online"
+              />
+              <div>
+                <span>MULTIPLAYER</span>
+                <h3>GRAND THEFT AUTO ONLINE</h3>
+                <p>
+                  Construa seu império, corra, participe de missões e jogue com
+                  a comunidade.
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+      )}
 
       <section className="news section vi-only" id="noticias">
         <div className="section-heading">
@@ -333,26 +384,7 @@ export default function Home() {
           </span>
         </div>
         {gameMode === 'V' ? (
-          <div className="fivem-panel">
-            <div className="fivem-icon">
-              <Gamepad2 />
-            </div>
-            <div>
-              <span>LISTA OFICIAL</span>
-              <h3>ENCONTRE SEU SERVIDOR NO FIVEM</h3>
-              <p>
-                Pesquise servidores de roleplay, corrida, ação e muito mais
-                diretamente no navegador oficial da Cfx.re para GTA V.
-              </p>
-            </div>
-            <a
-              href="https://servers.fivem.net/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              ABRIR SERVIDORES FIVEM <ArrowUpRight />
-            </a>
-          </div>
+          <ServerBrowser />
         ) : (
           <div className="coming-panel">
             <span>EM BREVE</span>
