@@ -60,6 +60,28 @@ nav {
 nav a:hover {
   color: var(--orange);
 }
+.mode-switch {
+  display: flex;
+  padding: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.28);
+}
+.mode-switch button {
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #aaa;
+  padding: 8px 13px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+}
+.mode-switch button.active {
+  color: white;
+  background: var(--orange);
+}
 .join-button,
 .primary-action {
   display: inline-flex;
@@ -95,7 +117,12 @@ nav a:hover {
   align-items: center;
   padding: 100px 7vw 60px;
   background:
-    linear-gradient(90deg, rgba(12, 12, 12, 0.98), rgba(12, 12, 12, 0.78) 44%, rgba(12, 12, 12, 0.12) 78%),
+    linear-gradient(
+      90deg,
+      rgba(12, 12, 12, 0.98),
+      rgba(12, 12, 12, 0.78) 44%,
+      rgba(12, 12, 12, 0.12) 78%
+    ),
     linear-gradient(0deg, rgba(12, 12, 12, 0.7), transparent 48%),
     url('/jason-lucia.jpg') center / cover no-repeat;
 }
@@ -115,6 +142,18 @@ nav a:hover {
     100% 100%,
     100% 90px;
   opacity: 0.6;
+}
+.hero.gta-v {
+  background:
+    radial-gradient(
+      circle at 74% 50%,
+      rgba(39, 201, 105, 0.22),
+      transparent 24%
+    ),
+    linear-gradient(120deg, #0d1110, #16211b 58%, #0b0e0d);
+}
+.hero.gta-v em {
+  color: #48d77d;
 }
 .hero:after {
   content: 'VI';
@@ -393,6 +432,85 @@ h2 em,
   background: #121211;
   color: white;
 }
+.mode-v .vi-only {
+  display: none;
+}
+.fivem-panel,
+.coming-panel {
+  border: 1px solid #363633;
+  background: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.045),
+    rgba(255, 255, 255, 0.012)
+  );
+  min-height: 270px;
+  display: grid;
+  align-items: center;
+  gap: 30px;
+  padding: 40px;
+}
+.fivem-panel {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+}
+.fivem-icon {
+  width: 84px;
+  height: 84px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #48d77d;
+  color: #101411;
+}
+.fivem-icon svg {
+  width: 38px;
+  height: 38px;
+}
+.fivem-panel span,
+.coming-panel > span {
+  color: #48d77d;
+  font-size: 9px;
+  letter-spacing: 1.8px;
+  font-weight: 900;
+}
+.fivem-panel h3,
+.coming-panel h3 {
+  font-size: clamp(28px, 3.4vw, 52px);
+  letter-spacing: -2px;
+  margin-top: 10px;
+}
+.fivem-panel p,
+.coming-panel p {
+  color: #aaa69d;
+  line-height: 1.65;
+  max-width: 700px;
+}
+.fivem-panel > a,
+.coming-panel button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border: 0;
+  background: #48d77d;
+  color: #101411;
+  padding: 16px 20px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.coming-panel {
+  justify-items: start;
+  grid-template-columns: 1fr;
+}
+.coming-panel > span {
+  color: var(--orange);
+}
+.coming-panel button {
+  background: var(--orange);
+  color: white;
+}
 .section-heading.light .kicker {
   color: #8c877e;
 }
@@ -634,6 +752,10 @@ footer > span {
   .menu-button {
     display: block;
   }
+  .mode-switch {
+    margin-left: auto;
+    margin-right: 15px;
+  }
   .site-header nav.nav-open {
     display: flex;
     position: absolute;
@@ -678,6 +800,12 @@ footer > span {
   }
   .section-heading > a {
     margin-top: 8px;
+  }
+  .fivem-panel {
+    grid-template-columns: auto 1fr;
+  }
+  .fivem-panel > a {
+    grid-column: 1 / -1;
   }
 }
 @media (max-width: 560px) {
@@ -733,6 +861,21 @@ footer > span {
   }
   .social-actions a {
     justify-content: center;
+  }
+  .mode-switch button {
+    padding: 7px 9px;
+    font-size: 8px;
+  }
+  .fivem-panel,
+  .coming-panel {
+    padding: 28px 22px;
+  }
+  .fivem-panel {
+    grid-template-columns: 1fr;
+  }
+  .fivem-icon {
+    width: 64px;
+    height: 64px;
   }
   footer {
     gap: 20px;

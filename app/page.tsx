@@ -1,51 +1,17 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import {
   ArrowUpRight,
   CarFront,
-  Check,
   ChevronDown,
-  Copy,
   Crosshair,
+  Gamepad2,
   Menu,
   Play,
-  Search,
   Shirt,
-  Users,
   X,
 } from 'lucide-react';
-
-const servers = [
-  {
-    name: 'VICE ROLEPLAY',
-    type: 'RP',
-    players: '842 / 1000',
-    ping: 18,
-    address: 'play.vicerp.world',
-  },
-  {
-    name: 'LEONIDA RACING',
-    type: 'CORRIDA',
-    players: '214 / 300',
-    ping: 31,
-    address: 'race.leonida.gg',
-  },
-  {
-    name: 'PORT GELLHORN',
-    type: 'SOBREVIVÊNCIA',
-    players: '126 / 250',
-    ping: 44,
-    address: 'pgh.gta6world.com',
-  },
-  {
-    name: 'VICE CITY CHAOS',
-    type: 'LIVRE',
-    players: '93 / 150',
-    ping: 52,
-    address: 'chaos.vice.city',
-  },
-];
 
 const topics = [
   {
@@ -75,31 +41,14 @@ const topics = [
 ];
 
 export default function Home() {
-  const [activeFilter, setActiveFilter] = useState('TODOS');
-  const [query, setQuery] = useState('');
-  const [copied, setCopied] = useState<string | null>(null);
+  const [gameMode, setGameMode] = useState<'V' | 'VI'>('VI');
   const [menuOpen, setMenuOpen] = useState(false);
-  const filteredServers = useMemo(
-    () =>
-      servers.filter(
-        (server) =>
-          (activeFilter === 'TODOS' || server.type === activeFilter) &&
-          server.name.toLowerCase().includes(query.toLowerCase()),
-      ),
-    [activeFilter, query],
-  );
-
-  const copyAddress = async (address: string) => {
-    await navigator.clipboard.writeText(address);
-    setCopied(address);
-    window.setTimeout(() => setCopied(null), 1600);
-  };
 
   return (
-    <main>
+    <main className={gameMode === 'V' ? 'mode-v' : 'mode-vi'}>
       <header className="site-header">
         <a href="#inicio" className="brand" aria-label="GTA 6 World — início">
-          GTA <span>6</span> WORLD
+          GTA <span>{gameMode === 'VI' ? '6' : '5'}</span> WORLD
         </a>
         <button
           className="menu-button"
@@ -114,30 +63,66 @@ export default function Home() {
           <a href="#servidores">SERVIDORES</a>
           <a href="#universo">UNIVERSO</a>
         </nav>
+        <div className="mode-switch" aria-label="Selecionar jogo">
+          <button
+            className={gameMode === 'V' ? 'active' : ''}
+            onClick={() => setGameMode('V')}
+          >
+            GTA V
+          </button>
+          <button
+            className={gameMode === 'VI' ? 'active' : ''}
+            onClick={() => setGameMode('VI')}
+          >
+            GTA VI
+          </button>
+        </div>
         <a className="join-button" href="#servidores">
-          JOGAR AGORA <ArrowUpRight size={17} />
+          {gameMode === 'V' ? 'VER SERVIDORES' : 'EXPLORAR'}{' '}
+          <ArrowUpRight size={17} />
         </a>
       </header>
 
-      <section className="hero" id="inicio">
+      <section
+        className={`hero ${gameMode === 'V' ? 'gta-v' : ''}`}
+        id="inicio"
+      >
         <div className="hero-noise" />
         <div className="hero-content">
           <p className="eyebrow">
-            <span /> O PORTAL DEFINITIVO DE LEONIDA
+            <span />{' '}
+            {gameMode === 'V'
+              ? 'SERVIDORES GTA V NO FIVEM'
+              : 'O PORTAL DEFINITIVO DE LEONIDA'}
           </p>
           <h1>
-            VIVA O<br />
-            <em>PRÓXIMO</em>
-            <br />
-            MUNDO.
+            {gameMode === 'V' ? (
+              <>
+                <em>ENTRE</em>
+                <br />
+                NO JOGO.
+              </>
+            ) : (
+              <>
+                VIVA O<br />
+                <em>PRÓXIMO</em>
+                <br />
+                MUNDO.
+              </>
+            )}
           </h1>
           <p className="hero-copy">
-            Notícias, comunidades e tudo que pulsa nas ruas de Vice City. Seu
-            ponto de encontro começa aqui.
+            {gameMode === 'V'
+              ? 'Encontre servidores de GTA V na lista oficial do FiveM e conecte-se à comunidade.'
+              : 'Notícias, comunidades e tudo que pulsa nas ruas de Vice City. Seu ponto de encontro começa aqui.'}
           </p>
           <div className="hero-actions">
-            <a href="#noticias" className="primary-action">
-              EXPLORAR AGORA <ArrowUpRight />
+            <a
+              href={gameMode === 'V' ? '#servidores' : '#noticias'}
+              className="primary-action"
+            >
+              {gameMode === 'V' ? 'VER LISTA FIVEM' : 'EXPLORAR AGORA'}{' '}
+              <ArrowUpRight />
             </a>
             <a href="#servidores" className="text-action">
               <span>
@@ -149,19 +134,19 @@ export default function Home() {
         </div>
         <div className="hero-stats">
           <div>
-            <strong>19 NOV</strong>
+            <strong>{gameMode === 'V' ? 'FIVEM' : '19 NOV'}</strong>
             <span>
-              LANÇAMENTO
+              {gameMode === 'V' ? 'LISTA OFICIAL' : 'LANÇAMENTO'}
               <br />
-              2026
+              {gameMode === 'V' ? 'CFX.RE' : '2026'}
             </span>
           </div>
           <div>
-            <strong>PS5</strong>
+            <strong>{gameMode === 'V' ? 'GTA V' : 'PS5'}</strong>
             <span>
-              E XBOX
+              {gameMode === 'V' ? 'MODO' : 'E XBOX'}
               <br />
-              SERIES X|S
+              {gameMode === 'V' ? 'MULTIPLAYER' : 'SERIES X|S'}
             </span>
           </div>
         </div>
@@ -170,7 +155,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="news section" id="noticias">
+      <section className="news section vi-only" id="noticias">
         <div className="section-heading">
           <div>
             <p className="kicker">/ FONTE OFICIAL ROCKSTAR</p>
@@ -278,7 +263,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="videos section" id="videos">
+      <section className="videos section vi-only" id="videos">
         <div className="section-heading light">
           <div>
             <p className="kicker">/ ASSISTA AGORA</p>
@@ -325,78 +310,66 @@ export default function Home() {
       <section className="servers section" id="servidores">
         <div className="section-heading light">
           <div>
-            <p className="kicker">/ ENTRE NA CIDADE</p>
+            <p className="kicker">
+              /{' '}
+              {gameMode === 'V'
+                ? 'DIRETÓRIO OFICIAL FIVEM'
+                : 'STATUS MULTIPLAYER'}
+            </p>
             <h2>
-              SERVIDORES <em>ONLINE</em>
+              {gameMode === 'V' ? (
+                <>
+                  SERVIDORES <em>GTA V</em>
+                </>
+              ) : (
+                <>
+                  SERVIDORES <em>GTA VI</em>
+                </>
+              )}
             </h2>
           </div>
           <span className="live-pill">
-            <i /> DEMONSTRAÇÃO
+            <i /> {gameMode === 'V' ? 'FIVEM / CFX.RE' : 'AINDA INDISPONÍVEL'}
           </span>
         </div>
-        <div className="server-toolbar">
-          <div className="filters">
-            {['TODOS', 'RP', 'CORRIDA', 'LIVRE'].map((filter) => (
-              <button
-                key={filter}
-                className={activeFilter === filter ? 'active' : ''}
-                onClick={() => setActiveFilter(filter)}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
-          <label className="search">
-            <Search size={17} />
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Buscar servidor"
-            />
-          </label>
-        </div>
-        <div className="server-list">
-          <div className="server-row header-row">
-            <span>SERVIDOR</span>
-            <span>TIPO</span>
-            <span>JOGADORES</span>
-            <span>PING</span>
-            <span />
-          </div>
-          {filteredServers.map((server) => (
-            <div className="server-row" key={server.name}>
-              <strong>
-                <i /> {server.name}
-              </strong>
-              <span className="type-tag">{server.type}</span>
-              <span>
-                <Users size={15} /> {server.players}
-              </span>
-              <span className="ping">{server.ping} MS</span>
-              <button onClick={() => copyAddress(server.address)}>
-                {copied === server.address ? (
-                  <>
-                    <Check size={15} /> COPIADO
-                  </>
-                ) : (
-                  <>
-                    <Copy size={15} /> COPIAR IP
-                  </>
-                )}
-              </button>
+        {gameMode === 'V' ? (
+          <div className="fivem-panel">
+            <div className="fivem-icon">
+              <Gamepad2 />
             </div>
-          ))}
-          {!filteredServers.length && (
-            <div className="empty-state">Nenhum servidor encontrado.</div>
-          )}
-        </div>
-        <p className="server-note">
-          * Lista demonstrativa. A disponibilidade real depende dos servidores
-          da comunidade.
-        </p>
+            <div>
+              <span>LISTA OFICIAL</span>
+              <h3>ENCONTRE SEU SERVIDOR NO FIVEM</h3>
+              <p>
+                Pesquise servidores de roleplay, corrida, ação e muito mais
+                diretamente no navegador oficial da Cfx.re para GTA V.
+              </p>
+            </div>
+            <a
+              href="https://servers.fivem.net/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              ABRIR SERVIDORES FIVEM <ArrowUpRight />
+            </a>
+          </div>
+        ) : (
+          <div className="coming-panel">
+            <span>EM BREVE</span>
+            <h3>GTA VI AINDA NÃO POSSUI SERVIDORES PÚBLICOS</h3>
+            <p>
+              Quando houver uma plataforma oficial ou comunitária confiável para
+              GTA VI, ela poderá ser listada aqui. Enquanto isso, altere para o
+              modo GTA V e explore o FiveM.
+            </p>
+            <button onClick={() => setGameMode('V')}>
+              MUDAR PARA GTA V <ArrowUpRight />
+            </button>
+          </div>
+        )}
       </section>
 
-      <section className="universe section" id="universo">
+      <section className="universe section vi-only" id="universo">
         <div className="section-heading">
           <div>
             <p className="kicker">/ IMAGENS OFICIAIS</p>
@@ -442,7 +415,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="community" id="comunidade">
+      <section className="community vi-only" id="comunidade">
         <p>FAÇA PARTE DA COMUNIDADE</p>
         <h2>
           VICE CITY NÃO
@@ -468,7 +441,7 @@ export default function Home() {
       </section>
       <footer>
         <a href="#inicio" className="brand">
-          GTA <span>6</span> WORLD
+          GTA <span>{gameMode === 'VI' ? '6' : '5'}</span> WORLD
         </a>
         <p>
           Portal independente criado por fãs. Não afiliado à Rockstar Games.
