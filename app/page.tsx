@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { ServerBrowser } from '@/components/server-browser';
-import { InternationalVideosSection } from './components/InternationalVideos';
 import { NewsSection } from './components/NewsSection';
 import {
   ArrowUpRight,
@@ -154,10 +153,6 @@ export default function Home() {
         </div>
       </section>
 
-      {gameMode === 'VI' && (
-        <InternationalVideosSection />
-      )}
-
       {gameMode === 'V' && (
         <section className="gta5-showcase section" id="gta-v">
           <div className="section-heading">
@@ -209,7 +204,7 @@ export default function Home() {
       )}
 
       <NewsSection />
-      <section className="news section vi-only" id="noticias-antigas" style={{ display: 'none' }}>
+      {false && <section className="news section vi-only" id="noticias-antigas">
         <div className="section-heading">
           <div>
             <p className="kicker">/ FONTE OFICIAL ROCKSTAR</p>
@@ -315,11 +310,7 @@ export default function Home() {
             </article>
           </div>
         </div>
-      </section>
-
-      {gameMode === 'VI' && (
-        <InternationalVideosSection />
-      )}
+      </section>}
 
       <section className="videos section vi-only" id="videos">
         <div className="section-heading light">
@@ -365,10 +356,6 @@ export default function Home() {
         </div>
       </section>
 
-      {gameMode === 'VI' && (
-        <InternationalVideosSection />
-      )}
-
       <section className="servers section" id="servidores">
         <div className="section-heading light">
           <div>
@@ -411,10 +398,6 @@ export default function Home() {
           </div>
         )}
       </section>
-
-      {gameMode === 'VI' && (
-        <InternationalVideosSection />
-      )}
 
       <section className="universe section vi-only" id="universo">
         <div className="section-heading">
@@ -462,10 +445,6 @@ export default function Home() {
         </div>
       </section>
 
-      {gameMode === 'VI' && (
-        <InternationalVideosSection />
-      )}
-
       <section className="community vi-only" id="comunidade">
         <p>FAÇA PARTE DA COMUNIDADE</p>
         <h2>
@@ -490,10 +469,6 @@ export default function Home() {
           </a>
         </div>
       </section>
-
-      {gameMode === 'VI' && (
-        <InternationalVideosSection />
-      )}
 
       <footer>
         <a href="#inicio" className="brand">

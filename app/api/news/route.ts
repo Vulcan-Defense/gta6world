@@ -8,12 +8,13 @@ const fallback = [
 
 const decode = (text: string) => text.replace(/<!\[CDATA\[|\]\]>/g, '')
   .replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'")
-  .replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  .replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+  .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)));
 
 export async function GET() {
   let items = fallback;
   try {
-    const response = await fetch('https://news.google.com/rss/search?q=%22Grand+Theft+Auto+VI%22&hl=pt-BR&gl=BR&ceid=BR:pt-419', {
+    const response = await fetch('https://www.bing.com/news/search?q=%22Grand+Theft+Auto+VI%22&format=rss&setlang=pt-br', {
       headers: { 'User-Agent': 'GTA6World/1.0' },
       cf: { cacheTtl: 900, cacheEverything: true },
     } as RequestInit & { cf: { cacheTtl: number; cacheEverything: boolean } });
@@ -22,7 +23,7 @@ export async function GET() {
       const parsed = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 3).map((match) => {
         const block = match[1];
         const value = (tag: string) => decode(block.match(new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`))?.[1] ?? '');
-        return { title: value('title'), url: value('link'), source: value('source') || 'Google Notícias', publishedAt: new Date(value('pubDate')).toISOString() };
+        return { title: value('title'), url: value('link'), source: value('News:Source') || 'Bing Notícias', publishedAt: new Date(value('pubDate')).toISOString() };
       }).filter((item) => item.title && item.url);
       if (parsed.length === 3) items = parsed;
     }
