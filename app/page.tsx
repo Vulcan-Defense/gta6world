@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { ServerBrowser } from '@/components/server-browser';
-import { NewsSection } from './components/NewsSection';
+import { ServerBrowser } from './components/server-browser';
+import { ExternalGtaResources } from './components/ExternalGtaResources';
 import {
   ArrowUpRight,
   CarFront,
