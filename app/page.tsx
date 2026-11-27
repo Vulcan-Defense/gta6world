@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ServerBrowser } from '../components/server-browser';
 import { ExternalGtaResources } from './components/ExternalGtaResources';
 import {
@@ -46,6 +46,20 @@ const topics = [
 export default function Home() {
   const [gameMode, setGameMode] = useState<'V' | 'VI'>('VI');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  if (!hydrated) {
+    return (
+      <main className="site-loading" aria-busy="true">
+        <span>GTA 6 WORLD</span>
+        <p>Carregando o portal…</p>
+      </main>
+    );
+  }
 
   return (
     <main className={gameMode === 'V' ? 'mode-v' : 'mode-vi'}>
