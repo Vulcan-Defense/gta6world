@@ -75,6 +75,7 @@ export default function RootLayout({
             <a href="#noticias" className="hover:text-gray-300 transition-colors">NOTÍCIAS</a>
             <a href="#videos" className="hover:text-gray-300 transition-colors">VÍDEOS</a>
             <a href="#servidores" className="hover:text-gray-300 transition-colors">SERVIDORES</a>
+            <a href="#launcher" className="hover:text-gray-300 transition-colors">LAUNCHER</a>
             <a href="#universo" className="hover:text-gray-300 transition-colors">UNIVERSO</a>
             <a href="/loja?modo=VI" className="hover:text-gray-300 transition-colors">LOJA</a>
           </nav>

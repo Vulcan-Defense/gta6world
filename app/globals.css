@@ -432,6 +432,101 @@ h2 em,
   background: #121211;
   color: white;
 }
+.launcher {
+  color: #f7f4ed;
+  background:
+    radial-gradient(circle at 82% 22%, rgba(143, 82, 255, 0.24), transparent 28%),
+    linear-gradient(135deg, #111018 0%, #19121f 54%, #0e1117 100%);
+}
+.launcher-heading .kicker {
+  color: #b99bff;
+}
+.launcher-heading em {
+  color: #c5a9ff;
+}
+.launcher-byline {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.3px;
+  color: #bdb5ca;
+}
+.launcher-panel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 34px;
+  padding: 42px;
+  border: 1px solid rgba(197, 169, 255, 0.34);
+  background: rgba(11, 10, 17, 0.48);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.06);
+}
+.launcher-mark {
+  width: 88px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+  color: #15111d;
+  background: #c5a9ff;
+  box-shadow: 8px 8px 0 #7146a4;
+}
+.launcher-mark svg {
+  width: 43px;
+  height: 43px;
+}
+.launcher-copy > span {
+  color: #c5a9ff;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1.7px;
+}
+.launcher-copy h3 {
+  max-width: 660px;
+  margin: 10px 0;
+  font-size: clamp(26px, 3.2vw, 46px);
+  line-height: 0.98;
+  letter-spacing: -2px;
+}
+.launcher-copy p {
+  max-width: 620px;
+  margin: 0;
+  color: #c5c0cf;
+  line-height: 1.6;
+}
+.launcher-copy ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding: 0;
+  margin: 20px 0 0;
+  list-style: none;
+  color: #dcd5e7;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+}
+.launcher-copy li::before {
+  content: '✓';
+  margin-right: 7px;
+  color: #c5a9ff;
+}
+.launcher-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 17px 20px;
+  color: #18131f;
+  background: #c5a9ff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.9px;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.2s;
+}
+.launcher-download:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
 .mode-v .vi-only {
   display: none;
 }
@@ -1009,6 +1104,13 @@ footer > span {
   .fivem-panel {
     grid-template-columns: auto 1fr;
   }
+  .launcher-panel {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .launcher-download {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
   .fivem-panel > a {
     grid-column: 1 / -1;
   }
@@ -1079,11 +1181,23 @@ footer > span {
     font-size: 8px;
   }
   .fivem-panel,
-  .coming-panel {
+  .coming-panel,
+  .launcher-panel {
     padding: 28px 22px;
   }
   .fivem-panel {
     grid-template-columns: 1fr;
+  }
+  .launcher-panel {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .launcher-download {
+    width: 100%;
+  }
+  .launcher-byline {
+    display: inline-block;
+    margin-top: 25px;
   }
   .fivem-icon {
     width: 64px;

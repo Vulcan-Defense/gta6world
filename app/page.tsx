@@ -1,13 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { ServerBrowser } from './components/server-browser';
+import { ServerBrowser } from '../components/server-browser';
 import { ExternalGtaResources } from './components/ExternalGtaResources';
 import {
   ArrowUpRight,
   CarFront,
   ChevronDown,
   Crosshair,
+  Download,
+  Gamepad2,
   Menu,
   Play,
   Shirt,
@@ -62,6 +64,7 @@ export default function Home() {
           <a href="#noticias">NOTÍCIAS</a>
           <a href="#videos">VÍDEOS</a>
           <a href="#servidores">SERVIDORES</a>
+          <a href="#launcher">LAUNCHER</a>
           <a href="#universo">UNIVERSO</a>
           <a href={`/loja?modo=${gameMode}`}>LOJA</a>
         </nav>
@@ -397,6 +400,43 @@ export default function Home() {
             </button>
           </div>
         )}
+      </section>
+
+      <section className="launcher section" id="launcher">
+        <div className="section-heading launcher-heading">
+          <div>
+            <p className="kicker">/ XBOX EMULATION FOR PC</p>
+            <h2>
+              LAUNCHER <em>XRM VANGUARD</em>
+            </h2>
+          </div>
+          <span className="launcher-byline">DESENVOLVIDO PELA GTA6WORLD</span>
+        </div>
+        <div className="launcher-panel">
+          <div className="launcher-mark" aria-hidden="true">
+            <Gamepad2 />
+          </div>
+          <div className="launcher-copy">
+            <span>LAUNCHER PARA PC</span>
+            <h3>EMULAÇÃO XBOX, DIRETO NO SEU COMPUTADOR.</h3>
+            <p>
+              Baixe o Launcher XRM Vanguard para preparar sua experiência de
+              emulação Xbox no PC.
+            </p>
+            <ul aria-label="Detalhes do Launcher XRM Vanguard">
+              <li>Windows 10 ou posterior</li>
+              <li>Instalação guiada</li>
+              <li>Projeto GTA6World</li>
+            </ul>
+          </div>
+          <a
+            className="launcher-download"
+            href="/downloads/launcher-xrm-vanguard.exe"
+            download
+          >
+            BAIXAR LAUNCHER <Download size={18} />
+          </a>
+        </div>
       </section>
 
       <section className="universe section vi-only" id="universo">
